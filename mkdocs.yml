@@ -1,0 +1,10 @@
+theme:
+    name: readthedocs
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+    analytics:
+        gtag: G-ABC123
+    prev_next_buttons_location: top
+site_name: wxh-notebook
