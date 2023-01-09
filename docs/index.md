@@ -1,17 +1,22 @@
-# Welcome to MkDocs
+# 主页
 
-For full documentation visit [mkdocs.org](https://mkdocs.org).
+欢迎访问Wxh的个人网站。
 
-## Commands
+这里是我用来记录自己的学习心得与包含个人想法的一些文字的地方。
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+网站通过mkdocs搭建，并发布到Github上。本网站项目开源，内容引用请注明出处。
 
-## Project layout
+网站目前包含以下内容：
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## [光子学](photonics/photonics.md)
+
+* 散射矩阵
+* 薄膜理论
+* 傅里叶光学
+* 导波光学
+
+## [机器学习](machine_learning/machine_learning.md)
+* 监督式机器学习 (Supervised Machine Learning)
+    * 机器学习简介
+    * 使用多变量输入的回归
+    * 分类

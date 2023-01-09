@@ -8,3 +8,10 @@ theme:
         gtag: G-ABC123
     prev_next_buttons_location: top
 site_name: wxh-notebook
+
+nav:
+    - 主页: 'index.md'
+    - 光子学: 
+        - 'photonics/photonics.md'
+    - 机器学习: 
+        - 'machine_learning/machine_learning.md'
