@@ -16,7 +16,8 @@
 * 导波光学
 
 ## [机器学习](machine_learning/machine_learning.md)
+
 * 监督式机器学习 (Supervised Machine Learning)
-    * 机器学习简介
-    * 使用多变量输入的回归
-    * 分类
+  * 机器学习简介
+  * 使用多变量输入的回归
+  * 分类
