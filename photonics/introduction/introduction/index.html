@@ -7,16 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="shortcut icon" href="./img/favicon.ico">
-  <title>wxh-notebook</title>
+  <link rel="shortcut icon" href="../../../img/favicon.ico">
+  <title>光子学入门 - wxh-notebook</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   
-  <script src="./js/jquery-2.1.1.min.js" defer></script>
-  <script src="./js/modernizr-2.8.3.min.js" defer></script>
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u5149\u5b50\u5b66\u5165\u95e8";
+    var mkdocs_page_input_path = "photonics\\introduction\\introduction.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../../js/modernizr-2.8.3.min.js" defer></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/rust.min.js"></script>
@@ -31,9 +38,9 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href="./." class="icon icon-home"> wxh-notebook</a>
+        <a href="../../.." class="icon icon-home"> wxh-notebook</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -45,7 +52,7 @@
           
             <li class="toctree-l1">
 		
-    <a class="" href="./.">主页</a>
+    <a class="" href="../../..">主页</a>
 	    </li>
           
             <li class="toctree-l1">
@@ -54,7 +61,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./photonics/photonics/">光子学</a>
+    <a class="" href="../../photonics/">光子学</a>
                 </li>
     </ul>
 	    </li>
@@ -65,7 +72,7 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="./machine_learning/machine_learning/">机器学习</a>
+    <a class="" href="../../../machine_learning/machine_learning/">机器学习</a>
                 </li>
     </ul>
 	    </li>
@@ -80,7 +87,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="./.">wxh-notebook</a>
+        <a href="../../..">wxh-notebook</a>
       </nav>
 
       
@@ -88,9 +95,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="./.">Docs</a> &raquo;</li>
+    <li><a href="../../..">Docs</a> &raquo;</li>
     
+      
     
+    <li>光子学入门</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -100,19 +109,17 @@
           <div role="main">
             <div class="section">
               
-
-  <h1 id="search">Search Results</h1>
-
-  <form id="content_search" action="search.html">
-    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-    <input name="q" id="mkdocs-search-query" type="text" class="search_input search-query ui-autocomplete-input" placeholder="Search the Docs" autocomplete="off" autofocus title="Type search term here">
-  </form>
-
-  <div id="mkdocs-search-results" class="search-results">
-    Searching...
-  </div>
-
-
+                <h1 id="_1">光子学入门</h1>
+<h2 id="_2">什么是光子学?</h2>
+<p>光子学是一个相当新颖的学科，大概提出于20世纪80年代。"光子学" (photonics) 一词脱胎于 "电子学" (eletronics)，指的是 "产生和利用光和其他形式的辐射能，而且其量子单位是光子的技术" 。光子学的研究范围包括光学元件和仪器、激光器和其他光源、光纤、光电仪器、相关硬件和电子设备以及复杂系统的光发射、传输、偏转、放大和检测。光子学的应用范围从能量产生到检测，再到通信和信息处理。</p>
+<h2 id="_3">几何光学</h2>
+<p>我们所熟悉的以光路图为代表的光学研究方法，属于几何光学 (ray optics)。需要指出的是，类似于经典力学，几何光学在研究尺寸远大于波长的结构变化而且不考虑不同光线在焦点处的强度分布的时候，是能够给出相对准确的结果的。此外：</p>
+<ul>
+<li>在几何光学中，讨论光束/光线的直径没有意义。但是实际上光束的直径不可能无限小 (会发生衍射)。</li>
+<li>在几何光学中，除了材料折射率之外基本不需要考虑光波长，因为反射和折射不受波长影响。</li>
+</ul>
+<p>当然，这些局限性并不影响几何光学成为一门有用的学科，特别是在透镜成像领域。研究复杂透镜系统的方法被称为光线追踪(ray tracing)。但是这部分内容并不是——至少目前并不是本网站记录的重点。我们还是会将注意力集中在光在波长范围的结构变化中的传播，尤其是在特定介质中传播的时候。</p>
+              
             </div>
           </div>
           <footer>
@@ -142,9 +149,9 @@
       
     </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="./js/theme.js" defer></script>
-      <script src="./search/main.js" defer></script>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
 
 </body>
 </html>
