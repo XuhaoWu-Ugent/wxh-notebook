@@ -4,15 +4,22 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="shortcut icon" href="./img/favicon.ico" />
-    <title>wxh-notebook</title>
-    <link rel="stylesheet" href="./css/theme.css" />
-    <link rel="stylesheet" href="./css/theme_extra.css" />
+      <link rel="shortcut icon" href="../../../img/favicon.ico" />
+    <title>梯度下降算法 （Gradient descent） - wxh-notebook</title>
+    <link rel="stylesheet" href="../../../css/theme.css" />
+    <link rel="stylesheet" href="../../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
-    <script src="./js/jquery-3.6.0.min.js" defer></script>
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u68af\u5ea6\u4e0b\u964d\u7b97\u6cd5 \uff08Gradient descent\uff09";
+        var mkdocs_page_input_path = "machine_learning\\supervised_learning\\gradient_descent.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../../../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
-      <script src="./js/html5shiv.min.js"></script>
+      <script src="../../../js/html5shiv.min.js"></script>
     <![endif]-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/languages/yaml.min.js"></script>
@@ -34,9 +41,9 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="./." class="icon icon-home"> wxh-notebook
+          <a href="../../.." class="icon icon-home"> wxh-notebook
         </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
@@ -44,17 +51,17 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="./.">主页</a>
+                <li class="toctree-l1"><a class="reference internal" href="../../..">主页</a>
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">光子学</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="./photonics/photonics/">光子学</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../../photonics/photonics/">光子学</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">机器学习</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="./machine_learning/machine_learning/">机器学习</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../machine_learning/">机器学习</a>
                   </li>
               </ul>
       </div>
@@ -64,13 +71,14 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="./.">wxh-notebook</a>
+          <a href="../../..">wxh-notebook</a>
         
       </nav>
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="./." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+    <li><a href="../../.." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>梯度下降算法 （Gradient descent）</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -79,19 +87,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-
-  <h1 id="search">Search Results</h1>
-
-  <form id="content_search" action="search.html">
-    <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-    <input name="q" id="mkdocs-search-query" type="text" class="search_input search-query ui-autocomplete-input" placeholder="Search the Docs" autocomplete="off" autofocus title="Type search term here">
-  </form>
-
-  <div id="mkdocs-search-results" class="search-results" data-no-results-text="No results found">
-    Searching...
-  </div>
-
-
+                <h1 id="gradient-descent">梯度下降算法 （Gradient descent）</h1>
+<p>假设我们要解决下面的问题：</p>
+<p>我们有一个函数（实际上就是成本函数）
+J($w_1$, $w_2$, ..., $w_n$, b),
+我们需要得到这个函数的最小值。</p>
+<p>梯度下降算法的思路是：
+1. 给出一个初始的猜测值（比如w=0, b=0）
+2. 不断改变w和b的值来减小J(w, b)的值，直到获得极小值</p>
+<p>需要指出的是最小值可能不止一个。</p>
+<p>这个过程类似于我们站在山顶，环顾四周，选择能让我们最快下山的一个方向，迈出一步；
+之后再重新环顾四周，选择能让我们最快下山的一个方向，再迈出一步...依次类推，直到抵达山谷：
+<img alt="" src="../pictures/gradient_descent_1.png" /></p>
+<p>初始值的选择对于梯度下降算法非常重要。
+选择了差异很小的初始值可能导致最终结果有较大的差异。所有的这些结果都是局部极小值 (local minima)。</p>
+<p>上述例子中体现的梯度下降算法的数学表达是：
+<img alt="" src="../pictures/gradient_descent_2.png" />
+式中$\alpha$代表学习效率。
+这里需要注意两点：
+1. 计算机语言中等号"="的含义和数学中的不同，表示将等号右边的值赋值等号左边的变量。等于则是用"=="表示。
+2. 每次在迭代（即上面例子中下山时的每一步）的时候，w, b需要同步更新；也就是说不能用<strong>更新后</strong>的w来计算<strong>更新后</strong>b的值。</p>
+              
             </div>
           </div><footer>
 
@@ -118,10 +134,10 @@
     
   </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="./js/theme_extra.js" defer></script>
-    <script src="./js/theme.js" defer></script>
-      <script src="./search/main.js" defer></script>
+    <script>var base_url = '../../..';</script>
+    <script src="../../../js/theme_extra.js" defer></script>
+    <script src="../../../js/theme.js" defer></script>
+      <script src="../../../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
