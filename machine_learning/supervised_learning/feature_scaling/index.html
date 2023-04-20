@@ -15,7 +15,7 @@
     
     
       
-        <title>多变量 - wxh-notebook</title>
+        <title>特征缩放 (Feature scaling) - wxh-notebook</title>
       
     
     
@@ -63,7 +63,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#feature-scaling" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              多变量
+              特征缩放 (Feature scaling)
             
           </span>
         </div>
@@ -322,16 +322,28 @@
                   
 
 
-<h1 id="_1">多变量</h1>
-<p>之前的讨论中我们用到了房价的例子。
-当时我们只引入了房屋面积 (<span class="arithmatex">\(<span class="arithmatex">\(x_1\)</span>\)</span>) 这一个变量，
-如果我们多引入一些其他变量的话，那么整个统计表将会变成这样：
-<img alt="" src="../pictures/variables.png" />
-在这里我们定义了房屋面积，卧室数量，房屋年龄，房价 (<span class="arithmatex">\(x_1 - x_4\)</span>) 四个变量。
-第i行表示第i个训练样本，我们用上标x (<span class="arithmatex">\(x^i\)</span>) 表示。训练样本是向量。
-此时回归函数可以写为下图中向量数量积的形式：
-<img alt="" src="../pictures/models.png" />
-注意，多变量回归 (multiple variables regression) 与多元回归 (multivariate regression) 是不一样的。</p>
+<h1 id="feature-scaling">特征缩放 (Feature scaling)</h1>
+<p>前导知识：</p>
+<ul>
+<li><a href="../gradient_descent/">梯度下降算法</a></li>
+</ul>
+<p>特征缩放是一种用来对相互独立的变量 (特征值) 的范围进行归一化的方法。
+有时它也被称作数据归一化，通常用在数据预处理的过程中。现实生活中的数
+据集中通常在数值，范围和单位上都有较大的区别; 如果不进行预处理，
+可能会出现下图中的情况: 
+<img alt="" src="../pictures/feature_scaling_1.png" />
+注意到变量w_1的范围比较狭窄，这会使得梯度下降算法难以找到最快下降的路径。
+如果我们对特征值进行缩放, 如下图所示: 
+<img alt="" src="../pictures/feature_scaling_2.png" />
+此时即可较顺利的找到最速下降路径。</p>
+<p>常见的缩放方法有：
+1. 最小/最大值缩放; 
+<img alt="" src="../pictures/feature_scaling_3.png" />
+2. 平均值归一化;
+<img alt="" src="../pictures/feature_scaling_4.png" />
+3. Z-score 归一化; 
+<img alt="" src="../pictures/feature_scaling_5.png" />
+4. 对数变换</p>
 
 
 
