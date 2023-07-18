@@ -25,3 +25,7 @@ nav:
         - 'photonics/photonics.md'
     - 机器学习:
         - 'machine_learning/machine_learning.md'
+    - 半导体:
+        - 'semiconductor/semiconductor.md'
+    - 信号与系统:
+        - 'signals_and_systems/signals_and_systems.md'
