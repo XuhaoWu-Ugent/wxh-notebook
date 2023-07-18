@@ -18,13 +18,14 @@
 ## [机器学习](machine_learning/machine_learning.md)
 
 * 监督式机器学习 (Supervised Machine Learning)
+
   * 机器学习简介
   * 使用多变量输入的回归
   * 分类
 
 ## [半导体](semiconductor/semiconductor.md)
 
-* [固体物理](solid_state/solid_state.md)
+* [固体物理](semiconductor/solid_state/solid_state.md)
   * 晶格及其平移对称性
   * 
 
