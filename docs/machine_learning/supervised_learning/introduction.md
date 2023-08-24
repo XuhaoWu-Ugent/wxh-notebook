@@ -2,6 +2,7 @@
 
 ## 回归模型
 * [线性回归模型](linear_regression.md)
+* [多变量](multiple_features.md)
 * [成本函数](cost_function.md)
 * [梯度下降算法](gradient_descent.md)
 * [矢量化](vectorization.md)
