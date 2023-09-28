@@ -8,14 +8,15 @@
 想象一下，一束光照射到了某种物质的表面。根据量子力学我们知道，物质是由原子组成的，而且原子的外层是特定结构的电子云。
 光波是一种电磁波，因此它会和电子云发生相互作用。相互作用通过麦克斯韦方程组来描述：
 
-$
-\left\{\begin{array}{l}
+\begin{array}{l}
 \nabla \times \vec{e}=-\partial_t \vec{b} \\
+
 \nabla \times \vec{h}=\vec{j}+\partial_t \vec{d} \\
+
 \nabla \cdot \vec{d}=\rho \\
+
 \nabla \cdot \vec{b}=0
-\end{array}\right.
-$
+\end{array}
 
 其中, $\vec{e}$, $\vec{h}$ 是电场/磁场强度, 用来描述电磁场 (光波); 
 
@@ -39,12 +40,10 @@ $\vec{j}$, $\rho$ 代表电流密度/电荷密度，用来描述除了电磁波�
 
 电磁学中的构成关系为: 
 
-$
-\left\{\begin{array}{l}
+\{\begin{array}{l}
 \vec{b}=\mu_0 \vec{h} \\
 \vec{d}=\varepsilon_0 \varepsilon_r \vec{e}=\varepsilon_0 n^2 \vec{e}=\varepsilon_0\left(1+\chi_0\right) \vec{e}
-\end{array}\right.
-$
+\end{array}
 
 电位移的表达式中从三个方面描述了与电场强度的关系. 式一是从电磁学的角度 (相对介电常数), 式二是光学角度 (折射率), 式三是化学角度 (极化率). 本质相同, 只是按照不同学科的习惯和认知角度. 
 
@@ -66,7 +65,8 @@ $
 Nabla 算符被定义为: 
 
 $
-\nabla=\left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)=\vec{e}_x \frac{\partial}{\partial x}+\vec{e}_y \frac{\partial}{\partial y}+\vec{e}_z \frac{\partial}{\partial z}=\sum_{i=1}^3 \vec{e}_i \frac{\partial}{\partial x_i}
+\nabla=\left(\frac{\partial}{\partial x}, 
+\frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)=\vec{e}_x \frac{\partial}{\partial x}+\vec{e}_y \frac{\partial}{\partial y}+\vec{e}_z \frac{\partial}{\partial z}=\sum_{i=1}^3 \vec{e}_i \frac{\partial}{\partial x_i}
 $
 
 极/柱坐标表达形式: 
@@ -84,45 +84,34 @@ $
 
 例如:
 
-$
 \nabla(\varphi \psi)=\nabla\left(\varphi \psi_c\right)+\nabla\left(\varphi_c \psi\right)=\psi \nabla \varphi+\varphi \nabla \psi
-$
 
 中间部分就是微分的作用, 下标 c 的意思是 $\nabla$ 不作用于它, 当它是常数. 
 
 再例如: 
-$
+
 \nabla \cdot(\varphi \vec{f})=\nabla \cdot\left(\varphi \vec{f}_c\right)+\nabla \cdot\left(\varphi_c \vec{f}\right)=\nabla \varphi \cdot \vec{f}+\varphi \nabla \cdot \vec{f}
-$
 
-$
 \nabla \times(\varphi \vec{f})=\nabla \times\left(\varphi \vec{f}_c\right)+\nabla \times\left(\varphi_c \vec{f}\right)=\nabla \varphi \times \vec{f}+\varphi \nabla \times \vec{f}
-$
 
-$
 \nabla \cdot(\vec{f} \times \vec{g})=\nabla \cdot\left(\vec{f} \times \vec{g}_c\right)+\nabla \cdot\left(\vec{f}_c \times \vec{g}\right)=(\nabla \times \vec{f}) \cdot \vec{g}-(\nabla \times \vec{g}) \cdot \vec{f}
-$
 
 关注第二步, 这就是前面提到的想办法利用标量矢量混合运算让 $\nabla$ 作用在该作用的地方. 大家都是矢量, 那就要按照矢量的规则来, 这是混合积, 具有轮换对称性 (行列式那个交换行列的性质). 
-可别写出这种东西来: $\vec{f}_c \cdot(\vec{g} \times \nabla)$, 此时算符它作用在半个括号上了. 算符都是向右作用的! 
+可别写出这种东西来: 
 
-$
-\begin{aligned}
+$\vec{f}_c \cdot(\vec{g} \times \nabla)$, 此时算符它作用在半个括号上了. 算符都是向右作用的! 
+
 \nabla \times(\vec{f} \times \vec{g}) & =\nabla \times\left(\vec{f} \times \vec{g}_c\right)+\nabla \times\left(\vec{f}_c \times \vec{g}\right) \\
 & =(\vec{g} \cdot \nabla) \vec{f}-(\nabla \cdot \vec{f}) \vec{g}+(\nabla \cdot \vec{g}) \vec{f}-(\vec{f} \cdot \nabla) \vec{g}
-\end{aligned}
-$
 
-$
 \nabla(\vec{f} \cdot \vec{g})=\vec{f} \times(\nabla \times \vec{g})+(\vec{f} \cdot \nabla) \vec{g}+\vec{g} \times(\nabla \times \vec{f})+(\vec{g} \cdot \nabla) \vec{f}
-$
 
 用到的公式是: $\vec{C}(\vec{A} \cdot \vec{B})=(\vec{A} \cdot \vec{C}) \vec{B}-\vec{A} \times(\vec{B} \times \vec{C})$. 
 
 考虑到微分运算特性, 可以得到: 
-$
+
 \vec{C}(\vec{A} \cdot \vec{B})=(\vec{A} \cdot \vec{C}) \vec{B}-\vec{A} \times(\vec{B} \times \vec{C})
-$
+
 
 接下来套用矢量运算式, 对于 $\nabla\left(\vec{f} \cdot \vec{g}_c\right)$, 我们希望可以得到 $\nabla \times \vec{f}$ 或 $\vec{f} \times \nabla$, 
 
@@ -134,13 +123,9 @@ $
 
 最终可以得到: 
 
-$
-\begin{aligned}
-\nabla(\vec{f} \cdot \vec{g}) & =\nabla\left(\vec{f} \cdot \vec{g}_c\right)+\nabla\left(\vec{f}_c \cdot \vec{g}\right) \\
+\nabla(\vec{f} \cdot \vec{g})=\nabla\left(\vec{f} \cdot \vec{g}_c\right)+\nabla\left(\vec{f}_c \cdot \vec{g}\right) \\
 & =\left[\left(\vec{g}_c \cdot \nabla\right) \vec{f}-\vec{g}_c \times(\vec{f} \times \nabla)\right]+\left[\left(\vec{f}_c \cdot \nabla\right) \vec{g}-\vec{f}_c \times(\vec{g} \times \nabla)\right] \\
 & =(\vec{g} \cdot \nabla) \vec{f}+\vec{g} \times(\nabla \times \vec{f})+(\vec{f} \cdot \nabla) \vec{g}+\vec{f} \times(\nabla \times \vec{g}) .
-\end{aligned}
-$
 
 
 让我们回到上一节中提到的电子云和电磁场发生相互作用的环节. 电子云发生偏移的过程中伴随着做功。
@@ -148,9 +133,11 @@ $
 电磁场在单位空间, 单位时间内做功为 $\vec{j} \cdot \vec{e}$
 
 基于麦克斯韦方程组: 
+
 $\begin{aligned} & \nabla \times \vec{e}=-\partial_t \vec{b} \\ & \nabla \times \vec{h}=\vec{j}+\partial_t \vec{d}\end{aligned}$
 
 可以得到: 
+
 $\begin{aligned} & \nabla \times \vec{h}-\partial_t \vec{d}=\vec{j} \\ & \vec{e} \cdot\left(\nabla \times \vec{h}-\partial_t \vec{d}\right)=\vec{e} \cdot \vec{j}\end{aligned}$
 
 通过向量运算法则, $\nabla \cdot(\vec{e} \times \vec{h})=\vec{h}(\nabla \times \vec{e})-\vec{e}(\nabla \times \vec{h})$, 
@@ -176,7 +163,13 @@ $\begin{aligned} & \nabla \times \vec{h}-\partial_t \vec{d}=\vec{j} \\ & \vec{e}
 
 弹性系统 (例如弹簧) 的能量: $H \sim \frac{1}{2} k \cdot|\vec{x}|^2$
 
-#### 思考: 还有什么类似于 $\partial_t U+\nabla \cdot \vec{s}=-\vec{j} \cdot \vec{e}$ 的表达式？
+#### 思考: 
+
+#### 还有什么类似于 
+
+#### \partial_t U+\nabla \cdot \vec{s}=-\vec{j} \cdot \vec{e}
+
+#### 的表达式？
 
 自由电子的薛定谔方程: $i \hbar \partial_t \psi+\frac{\hbar^2}{2 m} \nabla^2 \psi=0$. 
 
