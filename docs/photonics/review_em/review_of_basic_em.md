@@ -173,12 +173,15 @@ $\begin{aligned} & \nabla \times \vec{h}-\partial_t \vec{d}=\vec{j} \\ & \vec{e}
 
 自由电子的薛定谔方程: $i \hbar \partial_t \psi+\frac{\hbar^2}{2 m} \nabla^2 \psi=0$. 
 
+因为 A = B, 那么 |A| = |B|, 得到: 
 $\begin{aligned} & \partial_t|\psi|^2=i \frac{\hbar}{2 m} \nabla \cdot\left[\psi^* \nabla \psi-\psi \nabla \psi^*\right] \\ & \partial_t \int_{-\infty}^{+\infty} d v|\psi|^2=i \frac{\hbar}{2 m} \int_{-\infty}^{+\infty} d v \nabla \cdot \vec{J}=0 \\ & \end{aligned}$ 
 
 得到总的粒子数守恒: $\int_{-\infty}^{+\infty} d v|\psi|^2= const$. 
 
 ### 波函数的复数形式
 $a(t)=|A| \cdot \cos (\omega t+\varphi)=\mathbb{R}\left\{|A| e^{j w t+\varphi}\right\}=\frac{1}{2}|A| e^{j \varphi} e^{j w t}+c . c.$. 
+
+* c.c. 指的是前一部分的共轭复数/函数.
 
 复数函数的时间平均值: 
 
