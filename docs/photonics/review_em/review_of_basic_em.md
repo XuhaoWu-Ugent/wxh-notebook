@@ -188,3 +188,15 @@ $a(t)=|A| \cdot \cos (\omega t+\varphi)=\mathbb{R}\left\{|A| e^{j w t+\varphi}\r
 $\begin{aligned}\langle a(t) \cdot b(t)\rangle & =\frac{1}{\Delta} \int_0^{\Delta}|A \cdot B| \cos (w t+\alpha) \cdot \cos (w t+\beta) d t= \\ & =\left\langle\frac{1}{4}\left(A \cdot B e^{22 w t}+A^* \cdot B+c . c .\right)\left|=\frac{1}{2}\right| \frac{A^* B}{2}+c . c .\right.\end{aligned}$
 
 $\langle a(t) \cdot b(t)\rangle=\frac{1}{2} R e\left\{A^* B\right\}$
+
+推导过程: 
+
+
+意义: 
+是实际可以被测量的物理量. 例如: 测量激光的功率, 实际上测的是激光谐振腔 (cavity) 的损耗的时间平均值 (更多的能量被包含在腔内). 
+
+active sources: can be measured. reactive sources: can't be measured. 
+
+### 光场强度 (Optical Intensity)
+量纲: 平均功率 (W) x 单位面积由电磁场携带的沿传播方向的能量(unit area carried by the EM field in the direction of propagation of the energy) (/$m^2$) 
+
