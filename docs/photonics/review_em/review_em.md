@@ -1,14 +1,12 @@
 # 电磁场基础
 
-参考: https://primalight.org/ee231-optics/
-
 以下内容来源于KAUST, ECE学院的Andrea Fratalocchi教授的课堂笔记。
 
 ## 光在各向同性 (isotropic) 且均质 (homogeneous) 的介质中与物质的相互作用
 想象一下，一束光照射到了某种物质的表面。根据量子力学我们知道，物质是由原子组成的，而且原子的外层是特定结构的电子云。
 光波是一种电磁波，因此它会和电子云发生相互作用。相互作用通过麦克斯韦方程组来描述：
 
-\begin{array}{l}
+$\begin{array}{l}
 \nabla \times \vec{e}=-\partial_t \vec{b} \\
 
 \nabla \times \vec{h}=\vec{j}+\partial_t \vec{d} \\
@@ -16,7 +14,7 @@
 \nabla \cdot \vec{d}=\rho \\
 
 \nabla \cdot \vec{b}=0
-\end{array}
+\end{array}$
 
 其中, $\vec{e}$, $\vec{h}$ 是电场/磁场强度, 用来描述电磁场 (光波); 
 
@@ -40,8 +38,8 @@ $\vec{j}$, $\rho$ 代表电流密度/电荷密度，用来描述除了电磁波�
 
 电磁学中的构成关系为: 
 
-\{\begin{array}{l}
-\vec{b}=\mu_0 \vec{h} \\
+\begin{array}{l} 
+\vec{b}=\mu_0 \vec{h}, \\
 \vec{d}=\varepsilon_0 \varepsilon_r \vec{e}=\varepsilon_0 n^2 \vec{e}=\varepsilon_0\left(1+\chi_0\right) \vec{e}
 \end{array}
 
@@ -64,16 +62,11 @@ $\vec{j}$, $\rho$ 代表电流密度/电荷密度，用来描述除了电磁波�
 
 Nabla 算符被定义为: 
 
-$
-\nabla=\left(\frac{\partial}{\partial x}, 
-\frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)=\vec{e}_x \frac{\partial}{\partial x}+\vec{e}_y \frac{\partial}{\partial y}+\vec{e}_z \frac{\partial}{\partial z}=\sum_{i=1}^3 \vec{e}_i \frac{\partial}{\partial x_i}
-$
+$\nabla=\left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)=\vec{e}_x \frac{\partial}{\partial x}+\vec{e}_y \frac{\partial}{\partial y}+\vec{e}_z \frac{\partial}{\partial z}=\sum_{i=1}^3 \vec{e}_i \frac{\partial}{\partial x_i}$
 
 极/柱坐标表达形式: 
 
-$
-\nabla=\vec{e}_r \frac{\partial}{\partial r}+\vec{e}_{\varphi} \frac{1}{r} \frac{\partial}{\partial \varphi}+\vec{e}_z \frac{\partial}{\partial z}
-$
+$ \nabla=\vec{e}_r \frac{\partial}{\partial r}+\vec{e}_{\varphi} \frac{1}{r} \frac{\partial}{\partial \varphi}+\vec{e}_z \frac{\partial}{\partial z}$
 
 运算律简记: 根据前面提到的具有的微分运算性质与具有矢量形式的性质可以将它的运算拆分为两部分:
 
@@ -84,7 +77,7 @@ $
 
 例如:
 
-\nabla(\varphi \psi)=\nabla\left(\varphi \psi_c\right)+\nabla\left(\varphi_c \psi\right)=\psi \nabla \varphi+\varphi \nabla \psi
+$\nabla(\varphi \psi)=\nabla\left(\varphi \psi_c\right)+\nabla\left(\varphi_c \psi\right)=\psi \nabla \varphi+\varphi \nabla \psi$
 
 中间部分就是微分的作用, 下标 c 的意思是 $\nabla$ 不作用于它, 当它是常数. 
 
@@ -196,6 +189,8 @@ $\langle a(t) \cdot b(t)\rangle=\frac{1}{2} R e\left\{A^* B\right\}$
 是实际可以被测量的物理量. 例如: 测量激光的功率, 实际上测的是激光谐振腔 (cavity) 的损耗的时间平均值 (更多的能量被包含在腔内). 
 
 active sources: can be measured. reactive sources: can't be measured. 
+
+
 
 ### 光场强度 (Optical Intensity)
 量纲: 平均功率 (W) x 单位面积由电磁场携带的沿传播方向的能量(unit area carried by the EM field in the direction of propagation of the energy) (/$m^2$) 
