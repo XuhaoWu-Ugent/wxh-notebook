@@ -234,13 +234,28 @@ $$
 \end{aligned}
 $$
 
+### 光场强度 (Optical Intensity)
+量纲: 平均功率 (W) x 单位面积由电磁场携带的沿传播方向的能量(unit area carried by the EM field in the direction of propagation of the energy) (/$m^2$)
+
 意义: 
-是实际可以被测量的物理量. 例如: 测量激光的功率, 实际上测的是激光谐振腔 (cavity) 的损耗的时间平均值 (更多的能量被包含在腔内). 
+是实际可以被测量的物理量. 例如: 测量激光的功率, 实际上测的是激光谐振腔 (cavity) 的损耗的时间平均值 (更多的能量被包含在腔内).   
 
 active sources: can be measured. reactive sources: can't be measured. 
 
+### 平面波
 
+平面谐波 (harmonic plane wave) 是指单一频率的，且波前 (wavefront, surface of constant phase) 为无限大的平行平面; 这些平面 (位于?) 振幅为常数的峰值处且垂直于相位速度 (的矢量).
+(A harmonic plane wave is a constant-frequency wave whose wavefronts (surface of constant phase) are infinite parallel planes of constant peak-to-peak amplitude normal to the plane velocity vector)
 
-### 光场强度 (Optical Intensity)
-量纲: 平均功率 (W) x 单位面积由电磁场携带的沿传播方向的能量(unit area carried by the EM field in the direction of propagation of the energy) (/$m^2$) 
+![](pictures/plane_waves.png)
 
+* 平面波的表达式: 
+
+$$
+\left\{\begin{array}{l}
+\vec{e}=\frac{1}{2} \vec{E} e^{i(\omega t-\vec{k} \cdot \vec{r})}+c c . \\
+\vec{h}=\frac{1}{2} \vec{H} e^{i(\omega t-\vec{k} \cdot \vec{r})}+c c .
+\end{array}\right.
+$$
+
+我们对平面波如此感兴趣的原因是因为平面波的求导运算可以
