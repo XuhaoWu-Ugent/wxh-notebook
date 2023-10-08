@@ -254,8 +254,59 @@ active sources: can be measured. reactive sources: can't be measured.
 $$
 \left\{\begin{array}{l}
 \vec{e}=\frac{1}{2} \vec{E} e^{i(\omega t-\vec{k} \cdot \vec{r})}+c c . \\
-\vec{h}=\frac{1}{2} \vec{H} e^{i(\omega t-\vec{k} \cdot \vec{r})}+c c .
+\vec{h}=\frac{1}{2} \vec{H} e^{i(\omega t-\vec{k} \cdot \vec{r})}+c c . \\
+\vec{r}=[x,y,z]
 \end{array}\right.
 $$
 
-我们对平面波如此感兴趣的原因是因为平面波的求导运算可以
+我们对平面波如此感兴趣的原因是因为平面波的求导运算可以转换成乘法运算: 
+
+$$
+\left\{\begin{array}{l}
+\nabla \rightarrow-i \vec{k} \\
+\partial_t \rightarrow i \omega
+\end{array}\right.
+$$
+
+其中 $\nabla$ 是矢量, 即: 
+
+$$
+\left\{\begin{array}{l}
+\nabla \cdot \rightarrow-i \vec{k} \cdot \\
+\nabla \times \rightarrow-i \vec{k} \times
+\end{array}\right.
+$$
+
+#### 色散关系
+将平面波表达式代入麦克斯韦方程组, 可得: 
+
+$$
+\begin{aligned}
+& \nabla \times \nabla \times \vec{e}=-u_0 \partial_t(\nabla \times \vec{h}) \\
+& =-{u_0 \varepsilon_0} n^2 \partial_t^2 \vec{e}=\left(\frac{n}{c_0}\right)^2 \partial_t^2 \vec{e} \\
+& {\nabla \times \nabla} \times \vec{e}= \nabla^2 \vec{e} -\nabla(\nabla \cdot \vec{e}) \\
+& \because \nabla \cdot \vec{e}=0,  \therefore \nabla^2 \vec{e}=\left(\frac{n^2}{c_0^2}\right) \partial_t^2 \vec{e} \\
+& \because \text { plane wave, } \therefore k^2 \vec{e}=\frac{n^2}{c} w^2 \vec{e} 
+\end{aligned}
+$$
+
+$\omega^2=\frac{c_0^2 k^2}{\varepsilon_r}$ 被称为 **色散关系** (dispersion relation). 注意这个式子只在各向同性 (isotropic) 且均质 (homogenous) 的材料中才成立. 
+
+#### 真空阻抗 
+
+根据麦克斯韦方程组: 
+
+$$
+\left\{\begin{array}{l}
+\nabla \times \vec{e}=-\mu_0 \partial_t \vec{h} \\
+\nabla \times \vec{h}=\varepsilon_0 n^2 \partial_t \vec{e}
+\end{array}\right.
+$$
+
+得到: 
+
+$$
+-i \vec{k} \times \vec{E}=-i \mu_0 \omega \vec{H}
+$$
+
+
