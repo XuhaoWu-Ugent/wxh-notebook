@@ -309,4 +309,33 @@ $$
 -i \vec{k} \times \vec{E}=-i \mu_0 \omega \vec{H}
 $$
 
+代入色散关系可以得到: 
 
+$$
+\vec{H}=\frac{n}{\eta_0} \hat{k} \times \vec{E}
+$$
+
+我们将 $\eta_0=\sqrt{\frac{\mu_0}{\varepsilon_0}}$ 定义为真空阻抗 (vacuum impedance). 它的值大约是120*
+
+练习: 说明平面波的单位矢量 $\vec{k}$, $\vec{E}$, $\vec{H}$ 互相垂直. 
+
+$$
+\vec{H}=\frac{n}{n_0} \vec{k} \times \vec{E} \text { is orthogonal to } \vec{\mathrm{k}} \text { and } \vec{\mathrm{E}}
+$$
+
+$$
+\because \nabla \cdot \vec{e}=\nabla \cdot \vec{h}=0 \therefore \vec{k} \cdot \vec{E}=\vec{k} \cdot \vec{H}=0
+$$
+
+上式使用了平面波的求导性质. 
+
+练习: 计算坡印廷矢量的方向和模长. 
+
+$$
+\begin{aligned}
+& \vec{s}=\vec{e} \times \vec{h}=s \cdot \vec{k} \\
+& \langle s\rangle=\frac{1}{2} R e\left\{E^* \cdot H\right\}=\frac{1}{2}|E|^2 \frac{n}{\eta_0}
+\end{aligned}
+$$
+
+![](pictures/poynting_direction.png)
