@@ -15,6 +15,8 @@
 * 傅里叶光学
 * 导波光学
 
+## [电磁学](electromagnetics/electromagnetics.md)
+
 ## [机器学习](machine_learning/machine_learning.md)
 
 * 监督式机器学习 (Supervised Machine Learning)
