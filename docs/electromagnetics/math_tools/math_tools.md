@@ -189,4 +189,45 @@ $$
 \nabla=\left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)
 $$
 
+where the term operator means that $\nabla$ only has a meaning when it acts on some other quantity.
 
+$\Rightarrow$ applications of gradient: finding normals to surfaces, obtaining the rates of change of functions
+
+## 梯度, 保守场和势能 (Gradients, conservative fields and potentials)
+There is a very important link between the gradient of a scalar field and the concept of a conservative vector field. 
+Recall that a conservative vector field is one in which the line integral along a curve connecting two points does not depend on the path taken. 
+The connection between gradients and conservative fields is explained with following: 
+
+标量场的梯度与保守向量场的概念之间有着非常重要的联系。
+回顾一下，保守矢量场是指沿着连接两点的曲线的线积分不依赖于所走路径的矢量场。
+梯度和保守向量场之间的联系可以用下面的内容来解释：
+
+Suppose that a vector field $\bar{F}$ is related to a scalar field $\phi$ by $\bar{F}=\nabla \phi$ and $\nabla \phi$ exists everywhere in some region $D$. Then, $\bar{F}$ is conservative within $D$. Conversely, it $\bar{F}$ is conservative, then $\bar{F}$ can be written as the gradient of a scalar field, $\bar{F}=\nabla \phi$
+
+假设一个向量场 $\bar{F}$ 与一个标量场 $\phi$ 的关系是 $\bar{F}=\nabla \phi$，并且 $\nabla \phi$在某个区域 $D$ 中无处不在。那么，$\bar{F}$在$D$内是保守的。
+反过来，如果 $\bar{F}$ 是保守的，那么 $\bar{F}$ 可以写成一个标量场的梯度，即 $\bar{F}=\nabla \phi$
+
+Proof
+
+Suppose that $\bar{F}=\nabla \phi$. Then the line integral of $\bar{F}$ along a curve $C$ connecting two points $A$ and $B$ is
+
+$$
+\begin{aligned}
+& \int_C \bar{F} \cdot d \overline{r}=\int_C \nabla \phi \cdot d \overline{r} \quad \underbrace{\nabla \phi \cdot d \overline{r}=d \phi}_{\text {from (2) }} \\
+& \int_C \bar{F} \cdot d \overline{r}=\int_c d \phi=[\phi]_A^B=\phi(B)-\phi(A)
+\end{aligned}
+$$
+
+where the line integral has been evaluated simply using $\phi$ as the parameter. 
+Since this result only depends on the end points of $C, \bar{F}$ is conservative.
+
+其中的线积分是用 $\phi$ 作为参数来计算的。
+由于这一结果只取决于 $C 的端点，所以 \bar{F}$ 是保守的。
+
+If a vector $\bar{F}$ is conservative, the corresponding scalar field $\phi$ which obeys $\bar{F}=\nabla \phi$ is called the potential for $\bar{F}$. Note that the potential is not unique, since an arbitrary constant can be added to $\phi$ without affecting $\nabla \phi$.
+
+This arbitrary constant corresponds to the arbitrary choice of the origin for the lower limit in the integral in the definition
+
+$$
+\phi(\bar{r})=\int_0^{\bar{r}} \bar{F} \cdot d \overline{r}
+$$
