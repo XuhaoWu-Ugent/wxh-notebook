@@ -1,0 +1,777 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.3">
+    
+    
+      
+        <title>梯度, 散度, 旋度 - wxh-notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.79e020e9.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="wxh-notebook" class="md-header__button md-logo" aria-label="wxh-notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            wxh-notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              梯度, 散度, 旋度
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="wxh-notebook" class="md-nav__button md-logo" aria-label="wxh-notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    wxh-notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    光子学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            光子学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../photonics/photonics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    光子学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../machine_learning/machine_learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习入门
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    半导体
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            半导体
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../semiconductor/semiconductor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    半导体
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    信号与系统
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            信号与系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../signals_and_systems/signals_and_systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    信号与系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#partial-differentiation-and-taylor-series" class="md-nav__link">
+    偏微分与泰勒级数 (Partial Differentiation and Taylor series)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taylor-series-in-more-than-variable" class="md-nav__link">
+    泰勒级数 (Taylor series in more than variable)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradient-of-a-scalar-field" class="md-nav__link">
+    标量场的梯度 (Gradient of a scalar field)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradients-conservative-fields-and-potentials" class="md-nav__link">
+    梯度, 保守场和势能 (Gradients, conservative fields and potentials)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#divergence-of-a-vector-field" class="md-nav__link">
+    矢量场的散度 (Divergence of a vector field)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">梯度, 散度, 旋度</h1>
+<h2 id="partial-differentiation-and-taylor-series">偏微分与泰勒级数 (Partial Differentiation and Taylor series)</h2>
+<p>Scalar quantity <span class="arithmatex">\(f\)</span>, which is a function of three variables, so <span class="arithmatex">\(f=f(x, y, z)\)</span>.
+The partial derivative of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(x\)</span> is defined to be the derivative of <span class="arithmatex">\(f\)</span> with respect to <span class="arithmatex">\(x\)</span>, regarding <span class="arithmatex">\(y\)</span> and <span class="arithmatex">\(z\)</span> as constants. 
+To indicate that <span class="arithmatex">\(f\)</span> is a function of move than ore variable, the partial derivative is written using a curly <span class="arithmatex">\(d, \partial\)</span>. 
+More formally, the definition of the partial derivative is</p>
+<p>标量 <span class="arithmatex">\(f\)</span>，是三个变量的函数，所以 <span class="arithmatex">\(f=f(x,y,z)\)</span>. 
+<span class="arithmatex">\(f\)</span>关于<span class="arithmatex">\(x\)</span>的偏导数定义为<span class="arithmatex">\(f\)</span>关于<span class="arithmatex">\(x\)</span>的导数, 而将<span class="arithmatex">\(y\)</span>和<span class="arithmatex">\(z\)</span>当作常数处理. 
+为了表示 <span class="arithmatex">\(f\)</span> 是一个不只涉及一个变量的函数, 偏导数的写法使用了弯曲的 <span class="arithmatex">\(d, \partial\)</span>. 更正式地说, 偏导数的定义是: </p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial x}=\lim _{\delta x \rightarrow 0} \frac{f(x+\delta x, y, z)-f(x, y, z)}{\delta x}
+\]</div>
+<p>Second derivatives, such as <span class="arithmatex">\(\partial^2 f / \partial x^2\)</span> and mixed derivatives, such as <span class="arithmatex">\(\partial^2 f / \partial y \partial x\)</span> can also be defined: 
+the mixed derivative means that <span class="arithmatex">\(f\)</span> is differentiated with respect to <span class="arithmatex">\(x\)</span> regarding <span class="arithmatex">\(y\)</span> as a constant, and then differentiated with respect to <span class="arithmatex">\(y\)</span> regarding <span class="arithmatex">\(x\)</span> as a constant. 
+An important property of this mixed derivative, or cross-derivative, is that the order of the two derivatives does not matter, i.e. </p>
+<p>二阶导数, 例如 <span class="arithmatex">\(\partial^2 f / \partial x^2\)</span> 和混合导数, 例如 <span class="arithmatex">\(\partial^2 f / \partial y \partial x\)</span> 可以被表达为: 
+混合导数的含义是: 以 y$ 为常数, 对 <span class="arithmatex">\(f\)</span> 进行关于 <span class="arithmatex">\(x\)</span> 的微分, 然后以 x$ 为常数, 对 y$ 进行关于 <span class="arithmatex">\(x\)</span> 的微分. 
+这种混合导数或交叉导数的一个重要性质是, 两个导数的顺序并不重要, 即, </p>
+<div class="arithmatex">\[
+\frac{\partial^2 f}{\partial y \partial x}=\frac{\partial^2 f}{\partial x \partial y}
+\]</div>
+<p>Provided that these second partial derivatives exist and are continuous.
+<span class="arithmatex">\(\Rightarrow\)</span> One application: When a function is at a maximum or a minimum, all of its partial derivatives are zero. </p>
+<p>如果这些二次偏导数存在并且连续. 
+<span class="arithmatex">\(\Rightarrow\)</span> 一个应用: 当一个函数处于最大值或最小值时, 它的所有偏导数都为零. </p>
+<h2 id="taylor-series-in-more-than-variable">泰勒级数 (Taylor series in more than variable)</h2>
+<p>The Taylor series for an infinitely differentiable function <span class="arithmatex">\(f(x)\)</span> of a single variable is</p>
+<p>单变量无穷微分函数 <span class="arithmatex">\(f(x)\)</span> 的泰勒级数为</p>
+<div class="arithmatex">\[
+\begin{aligned}
+f(x) &amp; =f(a)+(x-a) \frac{d f}{d x}(a)+\frac{(x-a)^2}{2 !} \frac{d^2 f}{d x^2}(a) \\
+&amp; +\cdots \\
+&amp; =\sum_{n=0}^{\infty} \frac{(x-a)^n}{n !} \frac{d^n f}{d x^n}(a)
+\end{aligned}
+\]</div>
+<p>This can also be written as</p>
+<div class="arithmatex">\[
+\delta f=\delta x \frac{d f}{d x}+\frac{(\delta x)^2}{2 !} \frac{d^2 f}{d x^2}+\cdots \cdot
+\]</div>
+<p>where <span class="arithmatex">\(\delta x=(x-a)\)</span> is a small perturbation and
+<span class="arithmatex">\(\delta f=f(x)-f(a)\)</span> is the corresponding perturbation in the value of the function.</p>
+<p>其中 <span class="arithmatex">\(\delta x=(x-a)\)</span> 是一个小扰动，而 <span class="arithmatex">\(f=f(x)-f(a)\)</span> 是函数值的相应扰动。</p>
+<p>Taylor series can also be constructed for functions of more than one variable. 
+For a function <span class="arithmatex">\(f(x, y)\)</span> of two independent variables, the analogous formula is</p>
+<p>泰勒级数也可用于多个变量的函数。
+对于两个独立变量的函数 <span class="arithmatex">\(f(x,y)\)</span>，类似的公式为</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\delta f= &amp; \delta x \frac{\partial f}{\partial x}+\delta y \frac{\partial f}{\partial y}+\frac{(\delta x)^2}{2 !} \frac{\partial^2 f}{2 x^2}+ \\
+&amp; \frac{(\delta y)^2}{2 !} \frac{\partial^2 f}{\partial y^2}+\delta x \delta y \frac{\partial^2 f}{\partial x \partial y}+\cdots
+\end{aligned}
+\]</div>
+<p>In most of our applications of the Taylor series, we will only use the linear terms.</p>
+<div class="arithmatex">\[
+\delta f \cong \delta x \frac{\partial f}{\partial x}+\delta y \frac{\partial f}{\partial y}+\delta z \frac{\partial f}{\partial z}
+\]</div>
+<h2 id="gradient-of-a-scalar-field">标量场的梯度 (Gradient of a scalar field)</h2>
+<p>A scalar field <span class="arithmatex">\(f\)</span> can be visualised in terms of the level surfaces or isosurfaces on which <span class="arithmatex">\(f\)</span> is constant. 
+The gradient of the scalar field <span class="arithmatex">\(f\)</span> is a vector field, with a direction that is perpendicular to the level surfaces, pointing in the direction of increasing <span class="arithmatex">\(f\)</span>, 
+with a magnitude equal to the rate of change of <span class="arithmatex">\(f\)</span> in this direction. </p>
+<p>标量场 <span class="arithmatex">\(f\)</span> 可以用水平面或等值面来表示, 在水平面或等值面上 <span class="arithmatex">\(f\)</span> 是常数. 标量场 <span class="arithmatex">\(f\)</span> 的梯度是一个矢量场, 其方向与水平面垂直, 指向 <span class="arithmatex">\(f\)</span> 增加的方向, 
+其大小等于 <span class="arithmatex">\(f\)</span> 在该方向上的变化率. </p>
+<p><img alt="" src="../pictures/gradient.png" /></p>
+<p>The gradient of a scalar field <span class="arithmatex">\(f\)</span> can be written as grad <span class="arithmatex">\(f\)</span>, but the gradient is so important that a special symbol grad, <span class="arithmatex">\(\nabla\)</span>, is used, so grad <span class="arithmatex">\(f=\nabla f\)</span>. This symbol is sometimes referred to as "del" or "nabla".
+The gradient of <span class="arithmatex">\(f\)</span> can also be defined in a cartesian coordinate system in terms of the partial derivatives of <span class="arithmatex">\(f\)</span> :</p>
+<p>标量场 <span class="arithmatex">\(f\)</span> 的梯度可以写成 grad <span class="arithmatex">\(f\)</span>, 但梯度非常重要, 因此使用了一个特殊符号 grad, 即 <span class="arithmatex">\(\nabla\)</span>, 所以 grad <span class="arithmatex">\(f=\nabla f\)</span>. 这个符号有时被称为 "del "或 "nabla". 
+在直角坐标系中, <span class="arithmatex">\(f\)</span>的梯度也可以用<span class="arithmatex">\(f\)</span>的偏导数来定义: </p>
+<div class="arithmatex">\[
+\nabla f=\frac{\partial f}{\partial x} \hat{e}_1+\frac{\partial f}{\partial y} \hat{e}_2+\frac{\partial f}{\partial z} \hat{e}_3 \quad (1)
+\]</div>
+<p>Show that these two definitions are equivalent, by showing that the vector <span class="arithmatex">\(\nabla f\)</span> defined in (1) satisfies the two conditions of being perpendicular to the level surfaces and with magnitude equal to the rate of change of <span class="arithmatex">\(f\)</span> in this direction.</p>
+<p>通过证明(1)中定义的矢量 <span class="arithmatex">\(\nabla f\)</span> 满足垂直于水平面和大小等于 <span class="arithmatex">\(f\)</span> 在此方向上的变化率这两个条件, 证明这两个定义是等价的. </p>
+<p>Consider an infinitesimal change in position in space from <span class="arithmatex">\(\bar{r}\)</span> to <span class="arithmatex">\(\bar{r}+d\bar{r}\)</span>. This results in a small change in the value of the scalar field <span class="arithmatex">\(f\)</span> from <span class="arithmatex">\(f+d f\)</span>, where from the linear term expansion in Taylor series</p>
+<p>考虑空间位置从 <span class="arithmatex">\(\bar{r}\)</span> 到 <span class="arithmatex">\(\bar{r}+d\bar{r}\)</span> 的微小变化。这将导致标量场 <span class="arithmatex">\(f\)</span> 的值从 <span class="arithmatex">\(f+d f\)</span> 发生微小变化，从泰勒级数的线性项展开可知</p>
+<div class="arithmatex">\[
+\delta f=\frac{\partial f}{\partial x} \delta x+\frac{\partial f}{\partial y} y+\frac{\partial f}{\partial z} \delta z
+\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp;\begin{aligned}
+&amp; \delta x=d x \\
+&amp; \delta y=d y \\
+&amp; \delta z=d z \\
+&amp; \delta f=d f
+\end{aligned} \mid d f=\frac{\partial f}{\partial x} d x+\frac{\partial f}{\partial y} d y+\frac{\partial f}{\partial z} d z\\
+&amp;\begin{aligned}
+d f &amp; =\left(\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z}\right) \cdot(d x, d y, d z) \\
+&amp; =\nabla f \cdot d \overline{r} \quad \text { (2) }
+\end{aligned}
+\end{aligned}
+\]</div>
+<p>Now suppose that <span class="arithmatex">\(d \overline{r}\)</span> lies in the surface <span class="arithmatex">\(f=\)</span> constant. In this case, the change in the value of <span class="arithmatex">\(f\)</span> must be zero, 
+so we have <span class="arithmatex">\(d f=\nabla f \cdot d\overline{r}=0 \quad(\bar{r}\)</span> and <span class="arithmatex">\(\bar{r}+d \overline{r}\)</span> are on the same isosurface). </p>
+<p>现在假设 <span class="arithmatex">\(d \overline{r}\)</span> 位于曲面 <span class="arithmatex">\(f=\)</span> 常数. 在这种情况下，<span class="arithmatex">\(f\)</span> 值的变化必须为零, 
+所以我们有 <span class="arithmatex">\(d f=\nabla f \cdot d\overline{r}=0 (\bar{r}\)</span> 和 <span class="arithmatex">\(\bar{r}+d \overline{r}\)</span> 在同一个等值面上). </p>
+<p><img alt="" src="../pictures/nebla_f_dr.png" /></p>
+<p>Now in general <span class="arithmatex">\(\nabla f \neq 0\)</span> and <span class="arithmatex">\(d \overline{r} \neq 0\)</span>, so the two vectors <span class="arithmatex">\(\nabla f\)</span> and d <span class="arithmatex">\(\overline{r}\)</span> must be perpendicular.
+Since d <span class="arithmatex">\(\overline{r}\)</span> is in the level surface <span class="arithmatex">\(f=\)</span> constant, the vector <span class="arithmatex">\(\nabla f\)</span> must be perpendicular to the level surface.</p>
+<p>一般来说，<span class="arithmatex">\(\nabla f \neq 0\)</span> 和 <span class="arithmatex">\(d \overline{r}\)</span> 必须垂直. 所以两个向量 <span class="arithmatex">\(\nabla f\)</span> 和 <span class="arithmatex">\(d \overline{r}\)</span> 一定是相互垂直的. 
+由于 <span class="arithmatex">\(d \overline{r}\)</span> 在水平面上 <span class="arithmatex">\(f=\)</span> 常数, 所以向量 <span class="arithmatex">\(\nabla f\)</span> 一定垂直于水平面. </p>
+<p>This means that the vector <span class="arithmatex">\(\nabla f\)</span> defined by (1) has the correct direction; it remains to be shown that it has the correct magnitude. 
+This is achieved by using (2) with <span class="arithmatex">\(d \overline{r}=\hat{n} d s\)</span>, where <span class="arithmatex">\(\hat{n}\)</span> is the unit normal to the level surface and <span class="arithmatex">\(s\)</span> is a distance measured along the normal.</p>
+<p>这意味着由 (1) 定义的矢量 <span class="arithmatex">\(\nabla f\)</span> 的方向是正确的, 但还需要证明它的大小是正确的. 
+这可以通过在 (2) 中使用 <span class="arithmatex">\(d \overline{r}=\hat{n} d s\)</span> 来实现, 其中 <span class="arithmatex">\(\hat{n}\)</span> 是水平面的单位法向量, <span class="arithmatex">\(s\)</span> 是沿法线测量的距离. </p>
+<p>In this case, <span class="arithmatex">\(d f=\nabla f \cdot \hat{n} d s=|\nabla f| d s\)</span>, since <span class="arithmatex">\(\nabla f\)</span> and <span class="arithmatex">\(\hat{n}\)</span> are parallel and <span class="arithmatex">\(|\hat{n}|=1\)</span>. 
+Hence the magnitude of <span class="arithmatex">\(\nabla f\)</span> is</p>
+<p>在这种情况下, <span class="arithmatex">\(d f=\nabla f \cdot \hat{n} d s=|\nabla f| d s\)</span>, 
+因为 <span class="arithmatex">\(\nabla f\)</span> 和 <span class="arithmatex">\(\hat{n}\)</span> 是平行的, 并且 <span class="arithmatex">\(|\hat{n}|=1\)</span>, 
+因此, <span class="arithmatex">\(\nabla f\)</span> 的大小为</p>
+<div class="arithmatex">\[
+|\nabla f|=\frac{d f}{d s}
+\]</div>
+<p>which is the rate of change of <span class="arithmatex">\(f\)</span> with position along the normal. (s in this case)
+From (2) it follow that <span class="arithmatex">\(\nabla f\)</span> can be used to find the rate of change of <span class="arithmatex">\(f\)</span> in any direction.
+To find the rate of change of <span class="arithmatex">\(f\)</span> in the direction of the unit vector <span class="arithmatex">\(\hat{u}\)</span>, set <span class="arithmatex">\(d \overline{r}=\hat{u} d s\)</span> where <span class="arithmatex">\(d s\)</span> is the distance along <span class="arithmatex">\(\hat{u}\)</span>. 
+Then <span class="arithmatex">\(d f=\nabla f \cdot \hat{u} d s\)</span> and so</p>
+<p>式中 <span class="arithmatex">\(\nabla f\)</span> 为沿法线位置的变化率. (本例中为 s)
+由 (2) 可知, <span class="arithmatex">\(\nabla f\)</span> 可用来求得 <span class="arithmatex">\(f\)</span> 沿任意方向的变化率. 
+要计算 <span class="arithmatex">\(f\)</span> 在单位向量 <span class="arithmatex">\(\hat{u}\)</span> 方向上的变化率, 设置 <span class="arithmatex">\(d \overline{r}=\hat{u} d s\)</span>, 
+其中 <span class="arithmatex">\(d s\)</span> 是沿 <span class="arithmatex">\(\hat{u}\)</span> 的距离. 
+那么 <span class="arithmatex">\(d f=\nabla f \cdot \hat{u} d s\)</span>, 因此</p>
+<div class="arithmatex">\[
+\frac{d f}{d s}=\nabla f \cdot \hat{u}
+\]</div>
+<p>This is the rate of change of <span class="arithmatex">\(f\)</span> in the direction of the unit vector <span class="arithmatex">\(\hat{u}\)</span>, 
+and is called the directional derivative of <span class="arithmatex">\(f\)</span>. This can also be written as</p>
+<div class="arithmatex">\[
+\frac{d f}{d s}=|\nabla f| \cos \theta
+\]</div>
+<p>where <span class="arithmatex">\(\theta\)</span> is the angle between <span class="arithmatex">\(\nabla f\)</span> and the unit vector <span class="arithmatex">\(\hat{u}\)</span>. Since <span class="arithmatex">\(-1 \leqslant \cos \theta \leqslant 1\)</span>, 
+it follows that the magnitude of <span class="arithmatex">\(\nabla f\)</span> is equal to the maximum rate of change of <span class="arithmatex">\(f\)</span> with position</p>
+<p>其中 <span class="arithmatex">\(\theta\)</span> 是 <span class="arithmatex">\(\nabla f\)</span> 与单位向量 <span class="arithmatex">\(\hat{u}\)</span> 之间的夹角. 由于 <span class="arithmatex">\(-1 \leqslant \cos \theta \leqslant 1\)</span>, 
+因此, <span class="arithmatex">\(\nabla f\)</span> 的大小等于 <span class="arithmatex">\(f\)</span> 随位置变化的最大速率</p>
+<p>The symbol <span class="arithmatex">\(\nabla\)</span> can be interpreted as a vector differential operator,</p>
+<div class="arithmatex">\[
+\nabla=\left(\frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right)
+\]</div>
+<p>where the term operator means that <span class="arithmatex">\(\nabla\)</span> only has a meaning when it acts on some other quantity.</p>
+<p><span class="arithmatex">\(\Rightarrow\)</span> applications of gradient: finding normals to surfaces, obtaining the rates of change of functions</p>
+<h2 id="gradients-conservative-fields-and-potentials">梯度, 保守场和势能 (Gradients, conservative fields and potentials)</h2>
+<p>There is a very important link between the gradient of a scalar field and the concept of a conservative vector field. 
+Recall that a conservative vector field is one in which the line integral along a curve connecting two points does not depend on the path taken. 
+The connection between gradients and conservative fields is explained with following: </p>
+<p>标量场的梯度与保守向量场的概念之间有着非常重要的联系。
+回顾一下，保守矢量场是指沿着连接两点的曲线的线积分不依赖于所走路径的矢量场。
+梯度和保守向量场之间的联系可以用下面的内容来解释：</p>
+<p>Suppose that a vector field <span class="arithmatex">\(\bar{F}\)</span> is related to a scalar field <span class="arithmatex">\(\phi\)</span> by <span class="arithmatex">\(\bar{F}=\nabla \phi\)</span> and <span class="arithmatex">\(\nabla \phi\)</span> exists everywhere in some region <span class="arithmatex">\(D\)</span>. Then, <span class="arithmatex">\(\bar{F}\)</span> is conservative within <span class="arithmatex">\(D\)</span>. Conversely, it <span class="arithmatex">\(\bar{F}\)</span> is conservative, then <span class="arithmatex">\(\bar{F}\)</span> can be written as the gradient of a scalar field, <span class="arithmatex">\(\bar{F}=\nabla \phi\)</span></p>
+<p>假设一个向量场 <span class="arithmatex">\(\bar{F}\)</span> 与一个标量场 <span class="arithmatex">\(\phi\)</span> 的关系是 <span class="arithmatex">\(\bar{F}=\nabla \phi\)</span>，并且 <span class="arithmatex">\(\nabla \phi\)</span>在某个区域 <span class="arithmatex">\(D\)</span> 中无处不在。那么，<span class="arithmatex">\(\bar{F}\)</span>在<span class="arithmatex">\(D\)</span>内是保守的。
+反过来，如果 <span class="arithmatex">\(\bar{F}\)</span> 是保守的，那么 <span class="arithmatex">\(\bar{F}\)</span> 可以写成一个标量场的梯度，即 <span class="arithmatex">\(\bar{F}=\nabla \phi\)</span></p>
+<p>Proof</p>
+<p>Suppose that <span class="arithmatex">\(\bar{F}=\nabla \phi\)</span>. Then the line integral of <span class="arithmatex">\(\bar{F}\)</span> along a curve <span class="arithmatex">\(C\)</span> connecting two points <span class="arithmatex">\(A\)</span> and <span class="arithmatex">\(B\)</span> is</p>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp; \int_C \bar{F} \cdot d \overline{r}=\int_C \nabla \phi \cdot d \overline{r} \quad \underbrace{\nabla \phi \cdot d \overline{r}=d \phi}_{\text {from (2) }} \\
+&amp; \int_C \bar{F} \cdot d \overline{r}=\int_c d \phi=[\phi]_A^B=\phi(B)-\phi(A)
+\end{aligned}
+\]</div>
+<p>where the line integral has been evaluated simply using <span class="arithmatex">\(\phi\)</span> as the parameter. 
+Since this result only depends on the end points of <span class="arithmatex">\(C, \bar{F}\)</span> is conservative.</p>
+<p>其中的线积分是用 <span class="arithmatex">\(\phi\)</span> 作为参数来计算的。
+由于这一结果只取决于 <span class="arithmatex">\(C 的端点，所以 \bar{F}\)</span> 是保守的。</p>
+<p>If a vector <span class="arithmatex">\(\bar{F}\)</span> is conservative, the corresponding scalar field <span class="arithmatex">\(\phi\)</span> which obeys <span class="arithmatex">\(\bar{F}=\nabla \phi\)</span> is called the potential for <span class="arithmatex">\(\bar{F}\)</span>. Note that the potential is not unique, since an arbitrary constant can be added to <span class="arithmatex">\(\phi\)</span> without affecting <span class="arithmatex">\(\nabla \phi\)</span>.</p>
+<p>This arbitrary constant corresponds to the arbitrary choice of the origin for the lower limit in the integral in the definition</p>
+<div class="arithmatex">\[
+\phi(\bar{r})=\int_0^{\bar{r}} \bar{F} \cdot d \overline{r}
+\]</div>
+<p>Example: </p>
+<p>Show that the vector field <span class="arithmatex">\(\bar{F}=(2 x+y, x, 2 z)\)</span> is conservative.
+<span class="arithmatex">\(\bar{F}\)</span> can be written as the gradient of a scalar field <span class="arithmatex">\(\phi\)</span>. This gives the three equations</p>
+<div class="arithmatex">\[
+\begin{array}{lll}
+\frac{\partial \phi}{\partial x}=2 x+y, &amp; \frac{\partial \phi}{\partial y}=x, &amp; \frac{\partial \phi}{\partial z}=2 z \\
+\vdots &amp; \vdots &amp; \vdots \\
+\text { integrate } &amp; \text { find } h(y, z) &amp; \text { find } h(y, z)
+\end{array}
+\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+&amp; \int \frac{\partial \phi}{\partial x} d x=x^2+x y+h(y, z) \\
+&amp; \frac{\partial \phi}{\partial y}=x \quad \Rightarrow \frac{\partial h(y, z)}{\partial y}=0 \quad \begin{array}{r}
+h(y, z) \text { depends } \\
+\text { on only } z !
+\end{array} \\
+&amp; \frac{\partial \phi}{\partial z}=2 z \quad \Rightarrow \frac{2 h(y, z)}{\partial z}=\frac{d h(z)}{d z}=2 z \\
+&amp; h(z)=z^2+c
+\end{aligned}
+\]</div>
+<p>Therefore <span class="arithmatex">\(\phi=x^2+x y+z^2\)</span></p>
+<p>Then <span class="arithmatex">\(\bar{F}\)</span> is conservative since it can be written as <span class="arithmatex">\(\bar{F}=\nabla \phi\)</span> with <span class="arithmatex">\(\phi\)</span> given above.</p>
+<h2 id="divergence-of-a-vector-field">矢量场的散度 (Divergence of a vector field)</h2>
+<p>The divergence of a vector field <span class="arithmatex">\(\bar{u}\)</span> is a scalar field. Its value at a point <span class="arithmatex">\(P\)</span> is defined by</p>
+<div class="arithmatex">\[
+\operatorname{div} \bar{u}=\lim _{\delta v \rightarrow 0} \frac{1}{\delta v} \int\kern{-8pt}\int \kern{-23mu} \bigcirc \bf _{\kern{1mu}\delta s} \bar{u} \cdot \hat{n} d s
+\]</div>
+<p>where <span class="arithmatex">\(\delta V\)</span> is a small volume enclosing <span class="arithmatex">\(P\)</span> with surface <span class="arithmatex">\(\delta S\)</span> and <span class="arithmatex">\(\hat{n}\)</span> is the outward pointing normal to <span class="arithmatex">\(\delta s\)</span>. 
+Physically, this corresponds to the amount of flux of the vector field <span class="arithmatex">\(\bar{u}\)</span> out of <span class="arithmatex">\(\delta V\)</span> divided by the volume <span class="arithmatex">\(\delta V\)</span></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.a264c092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.6eac0284.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
