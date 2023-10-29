@@ -1,6 +1,6 @@
 # 人工神经网络 (ANN)
 
-参见：[人工神经网络](../photonics/literture_study/ann.md)
+参见：[人工神经网络](../photonics/literture_study/neuromorphic_silicon/ann.md)
 
 人工神经网络（ANN）是一种计算模型，其灵感来源于人脑中生物神经网络的结构和功能。人工神经网络用于机器学习和深度学习，通过从数据中学习来执行模式识别、分类、回归等任务。
 

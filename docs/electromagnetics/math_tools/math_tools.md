@@ -231,3 +231,42 @@ This arbitrary constant corresponds to the arbitrary choice of the origin for th
 $$
 \phi(\bar{r})=\int_0^{\bar{r}} \bar{F} \cdot d \overline{r}
 $$
+
+Example: 
+
+Show that the vector field $\bar{F}=(2 x+y, x, 2 z)$ is conservative.
+$\bar{F}$ can be written as the gradient of a scalar field $\phi$. This gives the three equations
+
+$$
+\begin{array}{lll}
+\frac{\partial \phi}{\partial x}=2 x+y, & \frac{\partial \phi}{\partial y}=x, & \frac{\partial \phi}{\partial z}=2 z \\
+\vdots & \vdots & \vdots \\
+\text { integrate } & \text { find } h(y, z) & \text { find } h(y, z)
+\end{array}
+$$
+
+$$
+\begin{aligned}
+& \int \frac{\partial \phi}{\partial x} d x=x^2+x y+h(y, z) \\
+& \frac{\partial \phi}{\partial y}=x \quad \Rightarrow \frac{\partial h(y, z)}{\partial y}=0 \quad \begin{array}{r}
+h(y, z) \text { depends } \\
+\text { on only } z !
+\end{array} \\
+& \frac{\partial \phi}{\partial z}=2 z \quad \Rightarrow \frac{2 h(y, z)}{\partial z}=\frac{d h(z)}{d z}=2 z \\
+& h(z)=z^2+c
+\end{aligned}
+$$
+
+Therefore $\phi=x^2+x y+z^2$
+
+Then $\bar{F}$ is conservative since it can be written as $\bar{F}=\nabla \phi$ with $\phi$ given above.
+
+## 矢量场的散度 (Divergence of a vector field)
+The divergence of a vector field $\bar{u}$ is a scalar field. Its value at a point $P$ is defined by
+
+$$
+\operatorname{div} \bar{u}=\lim _{\delta v \rightarrow 0} \frac{1}{\delta v} \int\kern{-8pt}\int \kern{-23mu} \bigcirc \bf _{\kern{1mu}\delta s} \bar{u} \cdot \hat{n} d s
+$$
+
+where $\delta V$ is a small volume enclosing $P$ with surface $\delta S$ and $\hat{n}$ is the outward pointing normal to $\delta s$. 
+Physically, this corresponds to the amount of flux of the vector field $\bar{u}$ out of $\delta V$ divided by the volume $\delta V$
