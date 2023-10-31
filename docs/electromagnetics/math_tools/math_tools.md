@@ -265,7 +265,7 @@ Then $\bar{F}$ is conservative since it can be written as $\bar{F}=\nabla \phi$ 
 The divergence of a vector field $\bar{u}$ is a scalar field. Its value at a point $P$ is defined by
 
 $$
-\operatorname{div} \bar{u}=\lim _{\delta v \rightarrow 0} \frac{1}{\delta v} \int\kern{-8pt}\int \kern{-23mu} \bigcirc \bf _{\kern{1mu}\delta s} \bar{u} \cdot \hat{n} d s
+\operatorname{div} \bar{u}=\lim _{\delta v \rightarrow 0} \frac{1}{\delta v} \int\kern{-8pt}\int\limits_{\delta \mathbf{s}} \kern{-24mu} \bigcirc \overline{\mathbf{u}} \cdot \hat{\mathbf{n}} \mathbf{d} \mathbf{s}
 $$
 
 where $\delta V$ is a small volume enclosing $P$ with surface $\delta S$ and $\hat{n}$ is the outward pointing normal to $\delta s$. 

@@ -14,6 +14,7 @@
 * 薄膜理论
 * 傅里叶光学
 * 导波光学
+* [可编程光学](photonics/programmable_photonics/programmable_photonics.md)
 
 ## [电磁学](electromagnetics/electromagnetics.md)
 
