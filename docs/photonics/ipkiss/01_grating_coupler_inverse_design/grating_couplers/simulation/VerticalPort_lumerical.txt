@@ -1,0 +1,140 @@
+def convert_substrate_port_to_port(port, box_size=(2.0, 1.0), n_modes=1):
+
+    if isinstance(port, i3.VerticalOpticalPort):
+        name = port.name
+        position = port.position
+        angle = port.angle
+        inclination = port.inclination
+        Port = i3.device_sim.Port(
+                name=name,
+                position=(position[0], position[1], -1.0),
+                # 1.5 is the esstimated height of the vertical port in si_fab pdk
+                normal=(
+                    np.cos(angle * DEG2RAD) * np.cos(inclination * DEG2RAD),
+                    np.sin(angle * DEG2RAD) * np.cos(inclination * DEG2RAD),
+                    np.sin(inclination * DEG2RAD)
+                ),
+                box_size=box_size,
+                n_modes=n_modes
+            )
+    else:
+        raise ValueError("The ports must be of type VerticalOpticalPort")
+
+    return Port
+
+# the new PortExporter should be used to add Vertical ports
+# original directory: C:\luceda\luceda_3121\python\envs\ipkiss3\Lib\site-packages\ipkiss3\simulation\engines\lumerical\fdtd\exporter.py
+class PortExporter(LumericalFDTDExporter):
+    """Exports Lumerical statements for IPKISS ports"""
+
+    primitive_type: Type[Port] = Port
+
+    def export(self, port: Port) -> Iterator[Tuple[StatementGroups, str]]:
+        context = self.context
+        x, y, z = port.position
+
+        # print("position", port.position)
+        # print("box_size", port.box_size)
+        # print("normal", port.normal)
+        if port.normal[2] != 0:
+            port_length, port_width = port.box_size
+            # by default, the projection of the port normal on the xy plane is the x axis
+            port_angle = math.atan2(port.normal[2], port.normal[0]) * RAD2DEG
+
+            if z > 0:
+                injection_axis = "z-axis"
+                direction = "Backward"
+                width_axis = "y"
+                length_axis = "x"
+                phi = 0.0
+                angle = 90 - port_angle
+
+            else:
+                injection_axis = "z-axis"
+                direction = "forward"
+                width_axis = "y"
+                length_axis = "x"
+                phi = 0.0
+                angle = 90 - port_angle
+
+            port_name = context.normalize_variable_name(port.name)
+
+            stmts = [
+                "addport;",
+                f"port_{port_name}_x = {format_val(x * 1e-6)};",
+                f"port_{port_name}_y = {format_val(y * 1e-6)};",
+                f"port_{port_name}_z = {format_val(z * 1e-6)};",
+                f'set("name", "{port.name}");',
+                f'set("injection axis", "{injection_axis}");',
+                f'set("phi", {phi});',
+                f'set("direction","{direction}");',
+                f'set("x", port_{port_name}_x);',
+                f'set("y", port_{port_name}_y);',
+                f'set("z", port_{port_name}_z);',
+                f'set("{width_axis} span", {format_val(abs(port_width * 1.e-6 / math.cos(angle * DEG2RAD)))});',
+                f'set("{length_axis} span", {format_val(port_length * 1.e-6)});',
+                f'set("theta", {angle});',
+                f'set("number of field profile samples", {3});',
+            ]
+
+
+        else:
+            port_width, port_height = port.box_size
+
+            # TODO: this assumes the port is horizontal
+            # Normalize angle, make sure it's positive
+            # We also need to add 180, as the angle in IPKISS points outward.
+            port_angle = (math.atan2(port.normal[1], port.normal[0]) * RAD2DEG + 180 + 360) % 360
+            # print(math.atan2(port.normal[1], port.normal[0]) * RAD2DEG)
+            # print("port_angle", port_angle)
+            if port_angle <= 45 or port_angle >= (360 - 45):
+                injection_axis = "x-axis"
+                direction = "Forward"
+                width_axis = "y"
+                phi = 0.0
+                angle = port_angle
+            elif port_angle < (180 - 45):
+                injection_axis = "y-axis"
+                direction = "Forward"
+                width_axis = "x"
+                phi = 90.0
+                angle = 90.0 - port_angle
+            elif port_angle <= (180 + 45):
+                injection_axis = "x-axis"
+                direction = "Backward"
+                width_axis = "y"
+                phi = 0.0
+                angle = port_angle - 180.0
+            else:
+                injection_axis = "y-axis"
+                direction = "Backward"
+                width_axis = "x"
+                phi = 90.0
+                angle = 270 - port_angle
+
+            port_name = context.normalize_variable_name(port.name)
+
+            stmts = [
+                "addport;",
+                f"port_{port_name}_x = {format_val(x * 1e-6)};",
+                f"port_{port_name}_y = {format_val(y * 1e-6)};",
+                f"port_{port_name}_z = {format_val(z * 1e-6)};",
+                f'set("name", "{port.name}");',
+                f'set("injection axis", "{injection_axis}");',
+                f'set("phi", {phi});',
+                f'set("direction","{direction}");',
+                f'set("x", port_{port_name}_x);',
+                f'set("y", port_{port_name}_y);',
+                f'set("z", port_{port_name}_z);',
+                f'set("{width_axis} span", {format_val(abs(port_width * 1.e-6 / math.cos(angle * DEG2RAD)))});',
+                f'set("z span", {format_val(port_height * 1.e-6)});',
+                f'set("theta", {angle});',
+                f'set("number of field profile samples", {3});',
+            ]
+        if port.n_modes > 1:
+            # required for setting up the s-parameter sweep with all the modes
+            stmts.append(f"updateportmodes(1:{port.n_modes});")
+
+        for stmt in stmts:
+            yield SIMSETUP, stmt
+
