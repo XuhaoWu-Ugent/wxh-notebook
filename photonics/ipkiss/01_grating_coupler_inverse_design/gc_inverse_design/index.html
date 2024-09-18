@@ -1,0 +1,707 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>光栅耦合器逆向设计 - wxh-notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="wxh-notebook" class="md-header__button md-logo" aria-label="wxh-notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            wxh-notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              光栅耦合器逆向设计
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="wxh-notebook" class="md-nav__button md-logo" aria-label="wxh-notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    wxh-notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    光子学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            光子学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../photonics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    光子学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../machine_learning/machine_learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    机器学习入门
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    半导体
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            半导体
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../semiconductor/semiconductor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    半导体
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    信号与系统
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            信号与系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../signals_and_systems/signals_and_systems/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    信号与系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      原有代码修改
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      版图设计与仿真
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      补充
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">光栅耦合器逆向设计</h1>
+<h2 id="_2">目标</h2>
+<p>在这个例子我希望设计一个应用在二维激光雷达中的光栅耦合器，参考：<a href="../nature11727.pdf">2D OPA</a>。注意，在二维激光雷达中，
+使用的光栅耦合器的尺寸不能太大。因此，使用3D FDTD仿真的方法来设计光栅耦合器是可行的。</p>
+<h2 id="_3">原有代码修改</h2>
+<p>版图部分在IPKISS中实现，仿真部分通过<a href="https://academy.lucedaphotonics.com/tutorials/device_sim/lumerical_fdtd_solutions#lumerical-fdtd-tutorial">IPKISS Link for Ansys FDTD</a>
+在Ansys FDTD中实现。但是目前IPKISS Link for Ansys FDTD并不支持垂直方向端口的设置。因此，我们需要修改原有的代码。</p>
+<pre><code class="language-python"># file: luceda_{version}\python\envs\ipkiss3\Lib\site-packages\ipkiss3\simulation\engines\lumerical\fdtd\exporter.py
+class PortExporter(LumericalFDTDExporter):
+    &quot;&quot;&quot;Exports Lumerical statements for IPKISS ports&quot;&quot;&quot;
+
+    primitive_type: Type[Port] = Port
+
+    def export(self, port: Port) -&gt; Iterator[Tuple[StatementGroups, str]]:
+        context = self.context
+        x, y, z = port.position
+
+        # print(&quot;position&quot;, port.position)
+        # print(&quot;box_size&quot;, port.box_size)
+        # print(&quot;normal&quot;, port.normal)
+        if port.normal[2] != 0:
+            port_length, port_width = port.box_size
+            # by default, the projection of the port normal on the xy plane is the x axis
+            port_angle = math.atan2(port.normal[2], port.normal[0]) * RAD2DEG
+
+            if z &gt; 0:
+                injection_axis = &quot;z-axis&quot;
+                direction = &quot;Backward&quot;
+                width_axis = &quot;y&quot;
+                length_axis = &quot;x&quot;
+                phi = 0.0
+                angle = 90 - port_angle
+
+            else:
+                injection_axis = &quot;z-axis&quot;
+                direction = &quot;forward&quot;
+                width_axis = &quot;y&quot;
+                length_axis = &quot;x&quot;
+                phi = 0.0
+                angle = 90 - port_angle
+
+            port_name = context.normalize_variable_name(port.name)
+
+            stmts = [
+                &quot;addport;&quot;,
+                f&quot;port_{port_name}_x = {format_val(x * 1e-6)};&quot;,
+                f&quot;port_{port_name}_y = {format_val(y * 1e-6)};&quot;,
+                f&quot;port_{port_name}_z = {format_val(z * 1e-6)};&quot;,
+                f'set(&quot;name&quot;, &quot;{port.name}&quot;);',
+                f'set(&quot;injection axis&quot;, &quot;{injection_axis}&quot;);',
+                f'set(&quot;phi&quot;, {phi});',
+                f'set(&quot;direction&quot;,&quot;{direction}&quot;);',
+                f'set(&quot;x&quot;, port_{port_name}_x);',
+                f'set(&quot;y&quot;, port_{port_name}_y);',
+                f'set(&quot;z&quot;, port_{port_name}_z);',
+                f'set(&quot;{width_axis} span&quot;, {format_val(abs(port_width * 1.e-6 / math.cos(angle * DEG2RAD)))});',
+                f'set(&quot;{length_axis} span&quot;, {format_val(port_length * 1.e-6)});',
+                f'set(&quot;theta&quot;, {angle});',
+                f'set(&quot;number of field profile samples&quot;, {3});',
+            ]
+
+
+        else:
+            ...
+            # the following is the original code in the software.
+</code></pre>
+<p>在上面的代码中我们添加了一个新的<code>if</code>语句，通过端口的法向量来判断端口的方向。
+如果端口的法向量的z分量不为0，那么我们就认为这是一个垂直方向的端口。在这里，为了简化问题，
+我只考虑了以光栅器件的波导方向作为x轴的情况（即垂直输入端口的法向量y分量为0）。
+此时我们可以通过端口的法向量的z分量来判断端口的方向。如果z分量大于0，那么我们认为光从端口的上方进入，端口为"backward"；
+反之则为"forward"。这与Ansys FDTD官网的光栅示例是一致的。</p>
+<h2 id="_4">版图设计与仿真</h2>
+<p>在版图设计中，我套用了<code>Luceda Academy</code>中的<a href="https://academy.lucedaphotonics.com/pdks_sources/si_fab/si_fab/ipkiss/si_fab/components/grating_coupler/doc/">光栅耦合器</a>。在Luceda Academy中,
+<code>Grating Coupler</code>的设计被分拆为了<code>Grating</code>和<code>Socket</code>两个部分。这里的光栅使用了两种不同的刻蚀方式，通过破坏周期性的方式将更多光耦合到空间上方。一共设置了四个优化参数：</p>
+<ul>
+<li><code>grating_period</code>: 光栅周期</li>
+<li><code>grating_width</code>: 光栅宽度</li>
+<li><code>line_width</code>: 刻蚀线宽</li>
+<li><code>first_curve_radius</code>: 第一个曲线的半径</li>
+</ul>
+<p>优化目标有三个，我们希望尽量尽量增大向上的耦合效率，同时减小反射率和向下的耦合效率。</p>
+<p>在仿真部分，我们使用了IPKISS Link for Ansys FDTD将版图传输给Ansys FDTD来进行仿真。考虑到我们的优化目标，我们需要在仿真中设置三个监视器/端口，
+其中两个是垂直方向的端口，一个是水平方向的端口。因此我们需要一个额外的函数来把垂直端口添加到仿真中：</p>
+<pre><code class="language-python">def convert_vertical_port_to_port(port, box_size=(2.0, 1.0), n_modes=1):
+
+    if isinstance(port, i3.VerticalOpticalPort):
+        name = port.name
+        position = port.position
+        angle = port.angle
+        inclination = port.inclination
+        Port = i3.device_sim.Port(
+                name=name,
+                position=(position[0], position[1], 1.5),
+                # 1.5 is the esstimated height of the vertical port in si_fab pdk
+                normal=(
+                    np.cos(angle * DEG2RAD) * np.cos(inclination * DEG2RAD),
+                    np.sin(angle * DEG2RAD) * np.cos(inclination * DEG2RAD),
+                    np.sin(inclination * DEG2RAD)
+                ),
+                box_size=box_size,
+                n_modes=n_modes
+            )
+    else:
+        raise ValueError(&quot;The ports must be of type VerticalOpticalPort&quot;)
+
+    return Port
+</code></pre>
+<p>返回的<code>Port</code>对象可以直接由IPKISS Link传入到仿真中。</p>
+<p>优化算法使用了<a href="https://pymoo.org/">pymoo</a>中的 <code>NSGA-II</code>，并且设置了<code>pop_size=20</code>，<code>max_gen=30</code>。</p>
+<p>最终的优化结果如下：</p>
+<pre><code class="language-python"># Evaluating: [0.494 0.245 2.575 4.957]
+# Transmission up: 0.3897203009661673, reflection: 0.09949659213882654, down: 0.1342305583145064
+</code></pre>
+<p>得到的光栅耦合器的周期为2.575um，宽度为0.494um，刻蚀线宽为0.245um，第一个曲线的半径为4.957um。向上的耦合效率为0.3897%，略低于论文中的情况；考虑到我们的设计工作在损耗略大的O波段，这是一个可以接受的结果。</p>
+<h2 id="_5">补充</h2>
+<p>如果需要设计的完整代码，请联系我：<a href="mailto:xuhao.wu@kaust.edu.sa">Email</a> 并说明您的用途。任何商业用途都是不被允许的。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
