@@ -15,21 +15,23 @@
 * 傅里叶光学
 * 导波光学
 * [可编程光学](photonics/programmable_photonics/programmable_photonics.md)
+* [IPKISS 仿真示例](photonics/ipkiss/ipkiss.md)
+* [GDSFactory 仿真示例](photonics/gdsfactory/gdsfactory.md)
 
 ## [电磁学](electromagnetics/electromagnetics.md)
 
 ## [机器学习](machine_learning/machine_learning.md)
 
-* 监督式机器学习 (Supervised Machine Learning)
+* [监督式机器学习 (Supervised Machine Learning)](machine_learning/supervised_learning/introduction.md)
 
-  * [机器学习简介]()
+  * 机器学习简介
   * 使用多变量输入的回归
   * 分类
 
 ## [半导体](semiconductor/semiconductor.md)
 
 * [固体物理](semiconductor/solid_state/solid_state.md)
-  * 晶格及其平移对称性
+  * [晶格及其平移对称性](semiconductor/solid_state/crystal_lattice.md)
   * 
 
 ## [信号与系统](signals_and_systems/signals_and_systems.md)
