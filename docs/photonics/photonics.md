@@ -11,7 +11,7 @@
 笔记参考书:
 1. [Roel Baets, Gu¨nther Roelkens, Photonics](references/Photonics.pdf)；
 
-2. [Dries Van Thourhout, Roel Baets, Microphotonics](references/Microphotonics.pdf)
+2. [Dries Van Thourhout, Roel Baets, Microphotonics](https://studiekiezer.ugent.be/studiefiche/en/E030761/2021)
 
 3. [Andrea Fratalocchi, Introduction to Optics](https://primalight.org/ee231-optics/)
 
